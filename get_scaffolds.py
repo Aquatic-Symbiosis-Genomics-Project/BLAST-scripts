@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# usage: get_scaffolds.py ids genome-fasta
 
 import sys
 

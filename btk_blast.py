@@ -6,7 +6,7 @@ import sys
 
 query=sys.argv[1]
 blast_out=sys.argv[2]
-eval=sys.argv[3]
+evalue=sys.argv[3]
 
 
 my_query = SeqIO.read(query, format="fasta")
@@ -21,7 +21,7 @@ from Bio.Blast import NCBIXML
 with open(blast_out) as result_handle:
     blast_record = NCBIXML.read(result_handle)
 
-eval_thresh = float(eval)
+eval_thresh = float(evalue)
 
 for alignment in blast_record.alignments:
     for hsp in alignment.hsps:
