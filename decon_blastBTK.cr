@@ -27,16 +27,21 @@ OptionParser.parse do |parser|
   	end
 end
 
-ids= [] of String
-header=0
-File.each_line(btk) do |line|
-	header += 1
-	next if header == 1
-	if /TRUE/i.match(line)
-		columns=line.delete('"').split(',')
-		ids << columns[-1]
+def parse_btk_file(file : String)
+	i = [] of String
+	header=0
+	File.each_line(file) do |line|
+		header += 1
+		next if header == 1
+		if /TRUE/i.match(line)
+			columns=line.delete('"').split(',')
+			i << columns[-1]
+		end
 	end
+	return i
 end
+
+ids = parse_btk_file(btk)
 
 Dir.mkdir_p(outdir)
 
