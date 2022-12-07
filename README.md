@@ -14,6 +14,7 @@ For now, put in working dir:
 - decon_blastBTK.sh
 - scaffold_assembly.fasta
 - btk.csv
+
 or (for the crystal version)
 - decon_blastBTK.cr
 - scaffold_assembly.fasta
