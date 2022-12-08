@@ -168,8 +168,25 @@ class GzipReader < BufferedReader
 	end
 end
 
+class Sequence
+	@name : String
+	@seq : String
+	@qual : String
+	@comment : String
+	getter name,seq,qual,comment
+	
+	def initialize(name : ByteString, seq : ByteString, qual : ByteString, comment : ByteString)
+		@name = name.to_s
+		@seq  = seq.to_s
+		@qual = qual.to_s
+		@comment = comment.to_s
+	end
+end
+
 class FastxReader(F)
 	getter name, seq, qual, comment
+	
+	include Iterator(Sequence)
 
 	def initialize(@fp : F)
 		@last_char = 0
@@ -178,6 +195,14 @@ class FastxReader(F)
 		@name = ByteString.new
 		@comment = ByteString.new
 		@tmp = ByteString.new
+	end
+
+	def next
+		if self.read >=0
+			Sequence.new(@name,@seq,@qual,@comment)
+		else
+			stop
+		end
 	end
 
 	def read

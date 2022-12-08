@@ -47,13 +47,13 @@ Dir.mkdir_p(outdir)
 
 fp = GzipReader.new(fasta)
 fx = FastxReader.new(fp)
-while (r = fx.read) >= 0
- 	if ids.includes? fx.name.to_s
-		file="#{outdir}/#{fx.name.to_s}.fa"
+fx.each{|e|
+ 	if ids.includes? e.name
+		file="#{outdir}/#{e.name}.fa"
 		File.open(file,"w"){|f|
-	 		f.puts ">#{fx.name.to_s}"
-			f.puts fx.seq.to_s
+	 		f.puts ">#{e.name}"
+			f.puts e.seq
 		}
 		system("curl -T #{file} http://172.27.25.136:35227 > #{file}.blast_out")
  	end
-end
+}
