@@ -183,7 +183,7 @@ class Sequence
 	end
 
 	def revcomp
-		@seq = @seq.reverse.tr('ACGTacgt','TGCAtgca')
+		@seq = @seq.reverse.tr("ACGTacgt","TGCAtgca")
 	end
 end
 
