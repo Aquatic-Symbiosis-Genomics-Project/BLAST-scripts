@@ -181,6 +181,10 @@ class Sequence
 		@qual = qual.to_s
 		@comment = comment.to_s
 	end
+
+	def revcomp
+		@seq = @seq.reverse.tr('ACGTacgt','TGCAtgca')
+	end
 end
 
 class FastxReader(F)
