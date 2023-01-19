@@ -1,0 +1,13 @@
+name: decon_blastBTK
+version: 0.1.0
+
+authors:
+  - epaule <mh6@sanger.ac.uk>
+
+targets:
+  decon_blast_btk:
+    main: src/decon_blastBTK.cr
+
+crystal: 1.7.1
+
+license: MIT

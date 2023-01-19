@@ -1,6 +1,9 @@
 # BLAST-scripts
 Scripts for automated blast searches from btk from downloaded tables with a selection. It will only blast the sequences selected in BTK.
 
+## releases
+crystal binary: https://github.com/:username/:reponame/releases/latest
+
 ## Run like this: 
 bash decon_blastBTK.sh ASSEMBLY.FA BTK.CSV WORKDIRECTORY
 
