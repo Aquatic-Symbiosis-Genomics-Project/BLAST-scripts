@@ -23,12 +23,28 @@ jobs:
       - name: Cache shards
         uses: actions/cache@v3
         with:
-          path: lib
-          key: ${{ runner.os }}-shards-${{ hashFiles('**/shard.lock') }}
+          path: ~/.cache/shards
+          key: ${{ runner.os }}-shards-${{ hashFiles('shard.yml') }}
+          restore-keys: ${{ runner.os }}-shards-
       - name: Install Shards 
-        run: shards check || shards install
+        run: shards update 
       - name: Ameba
         run: ./bin/ameba
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
+      - name: Cache shards
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/shards
+          key: ${{ runner.os }}-shards-${{ hashFiles('shard.yml') }}
+          restore-keys: ${{ runner.os }}-shards-
+      - name: Install Shards 
+        run: shards update 
       - name: Run tests
         run: crystal spec --order=random
       - name: Build
