@@ -5,7 +5,7 @@
 Scripts for automated blast searches from btk from downloaded tables with a selection. It will only blast the sequences selected in BTK.
 
 ## releases
-crystal binary: https://github.com/:username/:reponame/releases/latest
+[linux x86_64 crystal binary](https://github.com/:username/:reponame/releases/latest)
 
 ## Run like this: 
 bash decon_blastBTK.sh ASSEMBLY.FA BTK.CSV WORKDIRECTORY
@@ -22,6 +22,6 @@ For now, put in working dir:
 - btk.csv
 
 or (for the crystal version)
-- decon_blastBTK.cr
+- decon_blastBTK
 - scaffold_assembly.fasta
 - btk.csv
