@@ -38,7 +38,7 @@ def parse_btk_file(file : String)
       i << columns[-1]
     end
   end
-  return i
+  i
 end
 
 ids = parse_btk_file(btk)
