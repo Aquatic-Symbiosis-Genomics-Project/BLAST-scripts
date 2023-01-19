@@ -1,3 +1,6 @@
+[![Built with Crystal](https://img.shields.io/badge/built%20with-crystal-000000.svg?style=flat-square)](https://crystal-lang.org/)
+[![CI](https://github.com/Aquatic-Symbiosis-Genomics-Project/BLAST-scripts/actions/workflows/ci.yml/badge.svg)](https://github.com/Aquatic-Symbiosis-Genomics-Project/BLAST-scripts/actions?query=workflow%3ACI)
+[![Latest Release](https://github.com/Aquatic-Symbiosis-Genomics-Project/BLAST-scripts/actions/workflows/releases.yml/badge.svg)](https://github.com/Aquatic-Symbiosis-Genomics-Project/BLAST-scripts/actions/workflows/releases.yml)
 # BLAST-scripts
 Scripts for automated blast searches from btk from downloaded tables with a selection. It will only blast the sequences selected in BTK.
 
