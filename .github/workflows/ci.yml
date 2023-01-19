@@ -16,10 +16,10 @@ jobs:
 
   coding_standards:
     runs-on: ubuntu-latest
-    container:
-      image: crystallang/crystal:latest-alpine
     steps:
       - uses: actions/checkout@v3
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
       - name: Cache shards
         uses: actions/cache@v3
         with:
