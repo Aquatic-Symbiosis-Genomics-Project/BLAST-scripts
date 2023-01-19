@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Cache shards
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: lib
           key: ${{ runner.os }}-shards-${{ hashFiles('**/shard.lock') }}
@@ -36,8 +36,13 @@ jobs:
         uses: actions/checkout@v3
       - name: Install Crystal
         uses: crystal-lang/install-crystal@v1
-      - name: Install shards
-        run: shards install
+      - name: Cache shards
+        uses: actions/cache@v3
+        with:
+          path: lib
+          key: ${{ runner.os }}-shards-${{ hashFiles('**/shard.lock') }}
+      - name: Install Shards 
+        run: shards check || shards install
       - name: Run tests
         run: crystal spec --order=random
       - name: Build
