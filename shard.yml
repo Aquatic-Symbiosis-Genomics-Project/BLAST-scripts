@@ -5,7 +5,7 @@ authors:
   - epaule <mh6@sanger.ac.uk>
 
 targets:
-  decon_blast_btk:
+  decon_blastBTK:
     main: src/decon_blastBTK.cr
 
 crystal: 1.7.1
