@@ -23,11 +23,10 @@ jobs:
       - name: Cache shards
         uses: actions/cache@v2
         with:
-          path: ~/.cache/shards
-          key: ${{ runner.os }}-shards-${{ hashFiles('shard.yml') }}
-          restore-keys: ${{ runner.os }}-shards-
-      - name: Install Dependencies
-        run: shards update
+          path: lib
+          key: ${{ runner.os }}-shards-${{ hashFiles('**/shard.lock') }}
+      - name: Install Shards 
+        run: shards check || shards install
       - name: Ameba
         run: ./bin/ameba
   test:
