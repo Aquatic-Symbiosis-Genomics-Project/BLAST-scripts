@@ -54,6 +54,6 @@ fx.each { |e|
       f.puts ">#{e.name}"
       f.puts e.seq
     }
-    system("curl -T #{file} http://172.27.25.136:35227 > #{file}.blast_out")
+    system("curl -T #{file} http://172.27.19.85:35227 > #{file}.blast_out")
   end
 }
