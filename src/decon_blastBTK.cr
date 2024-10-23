@@ -47,7 +47,7 @@ Dir.mkdir_p(outdir)
 
 channel = Channel(String).new
 done = Channel(Nil).new
-[35227,35228,35229,35230].each{|p|
+[35227, 35228, 35229, 35230].each { |p|
   spawn do
     while f = channel.receive
       if f == "done"
@@ -73,7 +73,7 @@ fx.each { |e|
     channel.send(file)
   end
 }
-4.times{|_| channel.send("done")}
+4.times { |_| channel.send("done") }
 4.times do
   done.receive
 end
