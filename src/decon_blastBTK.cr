@@ -49,15 +49,15 @@ channel = Channel(String).new
 done = Channel(Nil).new
 [35227,35228,35229,35230].each{|p|
   spawn do
-        while f = channel.receive
-          if f == "done"
-            done.send(nil)
-            break
-          else
-            puts "processing(#{p}) #{f}  at #{Time.local.to_local}"
-            system("curl -s -T #{f} http://172.27.25.136:#{p} > #{f}.blast_out")
-          end
-        end
+    while f = channel.receive
+      if f == "done"
+        done.send(nil)
+        break
+      else
+        puts "processing(#{p}) #{f}  at #{Time.local.to_local}"
+        system("curl -s -T #{f} http://172.27.25.136:#{p} > #{f}.blast_out")
+      end
+    end
   end
 }
 
@@ -73,7 +73,8 @@ fx.each { |e|
     channel.send(file)
   end
 }
-4.times{|x| channel.send("done")}
+4.times{|_| channel.send("done")}
 4.times do
   done.receive
 end
+puts "done"
