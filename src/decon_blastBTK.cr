@@ -45,6 +45,22 @@ ids = parse_btk_file(btk)
 
 Dir.mkdir_p(outdir)
 
+channel = Channel(String).new
+done = Channel(Nil).new
+[35227,35228,35229].each{|p|
+  spawn do
+        while f = channel.receive
+          if f == "done"
+            done.send(nil)
+            break
+          else
+            puts "processing(#{p}) #{f}  at #{Time.local.to_local}"
+            system("curl -s -T #{f} http://172.27.25.136:#{p} > #{f}.blast_out")
+          end
+        end
+  end
+}
+
 fp = GzipReader.new(fasta)
 fx = FastxReader.new(fp)
 fx.each { |e|
@@ -54,6 +70,13 @@ fx.each { |e|
       f.puts ">#{e.name}"
       f.puts e.seq
     }
-    system("curl -T #{file} http://172.27.25.136:35227 > #{file}.blast_out")
+    puts "adding #{file}"
+    channel.send(file)
   end
+  puts e.name
 }
+3.times{|x| channel.send("done")}
+3.times do
+  puts "got"
+  done.receive
+end
