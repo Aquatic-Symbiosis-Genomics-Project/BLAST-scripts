@@ -10,7 +10,7 @@ jobs:
     container:
       image: crystallang/crystal
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Format
         run: crystal tool format --check
 
@@ -19,17 +19,16 @@ jobs:
     container:
       image: crystallang/crystal
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Crystal Ameba Linter
-        id: crystal-ameba
-        uses: crystal-ameba/github-action@v0.6.0
+        uses: crystal-ameba/github-action@v0.9.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install Crystal
         uses: crystal-lang/install-crystal@v1
       - name: Install Shards 
