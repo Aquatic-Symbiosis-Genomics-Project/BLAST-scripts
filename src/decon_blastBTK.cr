@@ -66,6 +66,8 @@ fx = FastxReader.new(fp)
 fx.each { |e|
   if ids.includes? e.name
     file = "#{outdir}/#{e.name}.fa"
+    outf = "#{file}.blast_out"
+    next if File.exists?(outf) && File.empty?(outf)
     File.open(file, "w") { |f|
       f.puts ">#{e.name}"
       f.puts e.seq
